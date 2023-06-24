@@ -52,8 +52,17 @@ public class AnnotationApplicationContext extends MyTinyBeanFactory {
                                 if (!clazz.isInterface()){
                                     Bean anno= clazz.getAnnotation(Bean.class);
                                     if (anno!=null){
-                                        registerBeanDefinition(clazz.getSimpleName(),new MyTinyBeanDefinition(clazz));
+                                        var beanDef=new MyTinyBeanDefinition(clazz);
+                                        registerBeanDefinition(clazz.getSimpleName(),beanDef);
+                                        var initMethods=anno.init_methods();
+                                        for(var initMethod:initMethods){
+                                            if(!initMethod.equals(""))
+                                                beanDef.addInitMethods(clazz.getDeclaredMethod(initMethod));
+                                        }
                                     }
+                                }
+                                if(BeanPostProcessor.class.isAssignableFrom(clazz)){
+                                    postProcessorsList.add((BeanPostProcessor) clazz.getConstructor().newInstance());
                                 }
                             }
                         }

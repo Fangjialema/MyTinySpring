@@ -9,6 +9,13 @@ public class TestClassC {
     private TestClassA testClassA;
     @Aop
     public void testMethod(){
-        System.out.println("this is a test method!");
+        System.out.println("this is testMethod which has an aop!");
+    }
+    @Aop
+    public void testMethod2(){
+        System.out.println("this is testMethod2 which has an aop!");
+    }
+    public void testMethod3(){
+        System.out.println("this is testMethod3 which doesn't have an aop!");
     }
 }

@@ -10,5 +10,7 @@ public class TestMain {
         TestClassB testClassB = (TestClassB) context.getBean("TestClassB");
         TestClassC testClassC = (TestClassC) context.getBean("TestClassC");
         testClassC.testMethod();
+        testClassC.testMethod2();
+        testClassC.testMethod3();
     }
 }

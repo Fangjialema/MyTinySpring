@@ -9,4 +9,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface Bean {
     String value() default "";
+
+    String[] init_methods() default {""};
 }
